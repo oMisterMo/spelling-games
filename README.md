@@ -21,6 +21,8 @@ npm run preview   # serve the production build
 | Word Scramble | Playable |
 | Missing Letters | Playable |
 | Spelling Bee | Playable |
+| Speedy Speller | Playable |
+| Balloon Pop | Playable |
 
 ## Updating the words
 
@@ -169,6 +171,25 @@ To change these settings, edit `src/games/spelling-bee/levels.ts`. Each word get
 
 Speech uses the browser's built-in voices, so the voice depends on the device. Some browsers have no speech support. In that case the Hear it buttons are hidden, the picture and clue are always shown, and only words that have a clue are used.
 
+## Balloon Pop
+
+### Levels
+
+| Level | Words per game | Balloons | Longest word | First letter shown | Picture |
+| --- | --- | --- | --- | --- | --- |
+| Easy | 5 | 7 | 5 letters | Yes | Yes |
+| Medium | 6 | 6 | 8 letters | No | Yes |
+| Hard | 6 | 5 | 10 letters | No | No |
+
+To change these settings, edit `src/games/balloon-pop/levels.ts`. Words without a clue show "Guess the hidden word" instead.
+
+### How to play
+
+- **Guessing:** tap a letter on the on-screen keyboard, or type it. A letter that's in the word turns green and appears everywhere it belongs.
+- **Wrong letters** fade out and pop one balloon. Each letter can only be tried once.
+- **Out of balloons:** the animal drops gently onto the hill, the word is shown (the missed letters in orange) and spoken, then the next word starts.
+- **Winning:** the end screen shows how many words were guessed before the balloons ran out.
+
 ## Project structure
 
 ```
@@ -183,6 +204,7 @@ src/
   games/word-scramble/    Word Scramble: game scene, scrambler, level settings
   games/missing-letters/  Missing Letters: game scene, puzzle maker, level settings
   games/spelling-bee/     Spelling Bee: game scene, letter bank, level settings
+  games/balloon-pop/      Balloon Pop: game scene, balloon drawing, sounds, level settings
   data/wordLists.ts       Words used by all games
   ui/                     Shared Button, Tile, ClueCard, LetterKeyboard, win screen and theme (fonts, colors)
 ```

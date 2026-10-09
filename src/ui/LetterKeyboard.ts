@@ -3,13 +3,13 @@ import { Button } from './Button';
 import { DARK } from './theme';
 
 export const BACKSPACE = '⌫';
-const FULL_ROWS = [[...'ABCDEFGHI'], [...'JKLMNOPQR'], [...'STUVWXYZ', BACKSPACE]];
+const FULL_ROWS = [[...'ABCDEFGHI'], [...'JKLMNOPQR'], [...'STUVWXYZ']];
 const KEY_GAP = 6;
 
 /**
  * On-screen letter keys: the full A–Z in three rows, or a single row of chosen
- * letters (a "letter bank"). Both end with a backspace key. Keys are positioned
- * in the parent's coordinates, so keep this container at 0,0.
+ * letters (a "letter bank"). Both end with a backspace key unless it's turned
+ * off. Keys are positioned in the parent's coordinates, so keep this container at 0,0.
  */
 export class LetterKeyboard extends Container {
   private buttons: Button[] = [];
@@ -18,10 +18,12 @@ export class LetterKeyboard extends Container {
   /**
    * @param onKey Called with the letter, or BACKSPACE.
    * @param reserveColumns Size keys as if a row had at least this many, so a short letter bank doesn't make keys jump in size.
+   * @param backspace Pass false to leave out the backspace key, for games where a letter can't be taken back.
    */
   constructor(
     private onKey: (key: string) => void,
     private reserveColumns = 0,
+    private backspace = true,
   ) {
     super();
   }
@@ -33,7 +35,8 @@ export class LetterKeyboard extends Container {
   /** Pass null for the full A–Z keyboard. Call `layout()` afterwards. */
   setLetters(letters: readonly string[] | null): void {
     for (const button of this.buttons) button.destroy({ children: true });
-    this.rows = letters ? [[...letters, BACKSPACE]] : FULL_ROWS;
+    const rows = letters ? [[...letters]] : FULL_ROWS;
+    this.rows = this.backspace ? [...rows.slice(0, -1), [...rows[rows.length - 1], BACKSPACE]] : rows;
     this.buttons = this.rows.flat().map((label) => {
       const isBackspace = label === BACKSPACE;
       const button = new Button({

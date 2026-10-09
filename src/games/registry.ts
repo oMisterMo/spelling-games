@@ -1,6 +1,7 @@
 import type { Scene } from '../core/Scene';
 import type { SceneManager } from '../core/SceneManager';
 import { abcOrderLevelSelect } from './abc-order/levelSelect';
+import { balloonPopLevelSelect } from './balloon-pop/levelSelect';
 import { crosswordLevelSelect } from './crossword/levelSelect';
 import { missingLettersLevelSelect } from './missing-letters/levelSelect';
 import { speedySpellerLevelSelect } from './speedy-speller/levelSelect';
@@ -30,4 +31,5 @@ export const GAMES: GameInfo[] = [
   { id: 'missing-letters', title: 'Missing Letters', color: 0x118ab2, create: (s, i) => missingLettersLevelSelect(s, i) },
   { id: 'spelling-bee', title: 'Spelling Bee', color: 0x9b5de5, create: (s, i) => spellingBeeLevelSelect(s, i) },
   { id: 'speedy-speller', title: 'Speedy Speller', color: 0xf15bb5, create: (s, i) => speedySpellerLevelSelect(s, i) },
+  { id: 'balloon-pop', title: 'Balloon Pop', color: 0x00bbf9, create: (s, i) => balloonPopLevelSelect(s, i) },
 ];

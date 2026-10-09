@@ -49,11 +49,17 @@ export class MenuScene extends Scene {
     const top = this.title.y + this.title.height / 2 + gap;
 
     // Pick a column count that fits the width, then size cards to fill the space.
-    const cols = width >= 900 ? 3 : width >= 560 ? 2 : 1;
-    const rows = Math.ceil(this.buttons.length / cols);
-    const cardW = Math.min(320, (width - margin * 2 - gap * (cols - 1)) / cols);
     const availH = height - top - margin;
-    const cardH = Math.max(60, Math.min(180, (availH - gap * (rows - 1)) / rows));
+    const minCardH = 60;
+    let cols = width >= 900 ? 3 : width >= 560 ? 2 : 1;
+    let rows = Math.ceil(this.buttons.length / cols);
+    // On a phone, go to two columns once a single column would run off the bottom.
+    if (cols === 1 && rows * minCardH + gap * (rows - 1) > availH) {
+      cols = 2;
+      rows = Math.ceil(this.buttons.length / cols);
+    }
+    const cardW = Math.min(320, (width - margin * 2 - gap * (cols - 1)) / cols);
+    const cardH = Math.max(minCardH, Math.min(180, (availH - gap * (rows - 1)) / rows));
 
     const gridW = cols * cardW + (cols - 1) * gap;
     const startX = (width - gridW) / 2;
