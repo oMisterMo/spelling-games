@@ -3,6 +3,7 @@ import type { SceneManager } from '../core/SceneManager';
 import { abcOrderLevelSelect } from './abc-order/levelSelect';
 import { balloonPopLevelSelect } from './balloon-pop/levelSelect';
 import { crosswordLevelSelect } from './crossword/levelSelect';
+import { fireflyCatchLevelSelect } from './firefly-catch/levelSelect';
 import { hungryMonsterLevelSelect } from './hungry-monster/levelSelect';
 import { missingLettersLevelSelect } from './missing-letters/levelSelect';
 import { speedySpellerLevelSelect } from './speedy-speller/levelSelect';
@@ -34,4 +35,5 @@ export const GAMES: GameInfo[] = [
   { id: 'speedy-speller', title: 'Speedy Speller', color: 0xf15bb5, create: (s, i) => speedySpellerLevelSelect(s, i) },
   { id: 'balloon-pop', title: 'Balloon Pop', color: 0x00bbf9, create: (s, i) => balloonPopLevelSelect(s, i) },
   { id: 'hungry-monster', title: 'Hungry Monster', color: 0x8ac926, textColor: 0x2b2d42, create: (s, i) => hungryMonsterLevelSelect(s, i) },
+  { id: 'firefly-catch', title: 'Firefly Catch', color: 0x3a0ca3, create: (s, i) => fireflyCatchLevelSelect(s, i) },
 ];
