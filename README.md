@@ -23,6 +23,7 @@ npm run preview   # serve the production build
 | Spelling Bee | Playable |
 | Speedy Speller | Playable |
 | Balloon Pop | Playable |
+| Hungry Monster | Playable |
 
 ## Updating the words
 
@@ -190,6 +191,30 @@ To change these settings, edit `src/games/balloon-pop/levels.ts`. Words without 
 - **Out of balloons:** the animal drops gently onto the hill, the word is shown (the missed letters in orange) and spoken, then the next word starts.
 - **Winning:** the end screen shows how many words were guessed before the balloons ran out.
 
+## Hungry Monster
+
+### Levels
+
+| Level | Words per game | Spellings to choose from | Picture | Clue |
+| --- | --- | --- | --- | --- |
+| Easy | 6 | 2 | Yes | Yes |
+| Medium | 6 | 3 | Yes | Yes |
+| Hard | 8 | 4 | No | Yes |
+
+To change these settings, edit `src/games/hungry-monster/levels.ts`. Words without a clue show "Which one is spelled right?" instead.
+
+### How to play
+
+- **Feeding:** the monster only eats words that are spelled right. Tap the right spelling and it flies into the monster's mouth.
+- **Wrong spellings** make the monster pull a face. The card flashes red and is crossed off, so the right one is always found in the end.
+- **Hearing the word:** it's spoken when each round starts. Tap **🔊** to hear it again. The button is hidden in browsers without speech.
+- **Winning:** the end screen shows how many words were right on the first try.
+
+### Things to know
+
+- **Wrong spellings are made up by the game**, not typed in. They copy common mistakes: sound-alike letters (KAT, DOLFIN), a doubled or missing letter (CATT, BAL) and two letters swapped (FREIND). To change the rules, edit `src/games/hungry-monster/misspell.ts`.
+- **A wrong spelling is never another word from the word lists**, but the game has no dictionary, so it could by chance be a real word that isn't in the lists.
+
 ## Project structure
 
 ```
@@ -205,6 +230,7 @@ src/
   games/missing-letters/  Missing Letters: game scene, puzzle maker, level settings
   games/spelling-bee/     Spelling Bee: game scene, letter bank, level settings
   games/balloon-pop/      Balloon Pop: game scene, balloon drawing, sounds, level settings
+  games/hungry-monster/   Hungry Monster: game scene, misspelling maker, monster drawing, sounds, level settings
   data/wordLists.ts       Words used by all games
   ui/                     Shared Button, Tile, ClueCard, LetterKeyboard, win screen and theme (fonts, colors)
 ```
