@@ -1,5 +1,5 @@
 import type { WordLevel } from '../../data/wordLists';
-import { ALL_DIRECTIONS, DOWN, DOWN_RIGHT, RIGHT, UP_RIGHT, type Direction } from './generatePuzzle';
+import { ALL_DIRECTIONS, DOWN, DOWN_RIGHT, RIGHT, type Direction } from './generatePuzzle';
 
 export interface WordSearchLevel {
   /** Which list in src/data/wordLists.ts to draw words from. */
